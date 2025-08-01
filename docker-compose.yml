@@ -1,22 +1,14 @@
 version: "3.8"
 
 services:
-  # Service untuk bot WhatsApp Anda
   whatsapp-bot:
-    build: . # Bangun image dari Dockerfile di direktori ini
+    build: . 
     container_name: umap_whatsapp_bot
     restart: unless-stopped
     ports:
-      # Arahkan port 8001 di VPS ke port 8080 di dalam kontainer
-      # Ganti 8001 dengan port yang Anda inginkan
-      # Ganti 8080 jika EXPOSE di Dockerfile berbeda
       - "8001:3001"
     env_file:
-      # Muat semua variabel dari file .env Anda
       - .env
     volumes:
-      # Mount kode Anda ke dalam kontainer (berguna untuk pengembangan)
-      # Untuk produksi, Anda bisa menghapus baris ini setelah build awal
       - .:/usr/src/app
-      # Gunakan volume anonim untuk node_modules agar tidak tertimpa
       - /usr/src/app/node_modules
